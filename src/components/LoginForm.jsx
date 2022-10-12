@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { Form,Button } from 'react-bootstrap'
-import './LoginForm.css'
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Form, Button } from "react-bootstrap";
+import "./LoginForm.css";
 
 const LoginForm = ({ userLogged }) => {
-  const [credentials, setCredentials] = useState({}) // usuario: "", password: ""  1ER FORMA PARA WUITAR WARNING
-  const credentialsHarcoded = { user: 'usuarioG17', password: 'password' }
-  const navigate = useNavigate()
+  const [credentials, setCredentials] = useState({}); // usuario: "", password: ""  1ER FORMA PARA WUITAR WARNING
+  const credentialsHarcoded = { user: "usuarioG17", password: "password" };
+  const navigate = useNavigate();
   /**
 
    * Harcodear 👀 credenciales con
@@ -15,42 +15,55 @@ const LoginForm = ({ userLogged }) => {
    */
 
   const handleFormValue = (event) => {
-    const { target: { name, value } } = event
-    setCredentials({ ...credentials, [name]: value })
-  }
-    
+    const {
+      target: { name, value },
+    } = event;
+    setCredentials({ ...credentials, [name]: value });
+  };
 
   const submitForm = (event) => {
-    event.preventDefault()
-    const { user, password } = credentialsHarcoded
+    event.preventDefault();
+    const { user, password } = credentialsHarcoded;
     if (credentials.user === user && credentials.password === password) {
-      userLogged(true)
-      navigate('/dashboard')
+      userLogged(true);
+      navigate("/dashboard");
     }
-  }
+  };
 
   return (
     <>
       <Form>
         <Form.Group className="mb-3" controlId="user">
-          <Form.Label>User</Form.Label>
-          <Form.Control type="text" placeholder="usuarioG17" 
-             name="user"
-             onChange={handleFormValue}
-             value={credentials.user || ''}
+          <Form.Label>user</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder="usuarioG17"
+            name="user"
+            onChange={handleFormValue}
+            value={credentials.user || ""}
           />
           <Form.Text className="text-muted">
-            We'll never share your email with anyone else.
+            We'll never share your email with anyone else!!
           </Form.Text>
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="formBasicPassword">
-          <Form.Label>Password</Form.Label>
-          <Form.Control type="password" placeholder="password"  name="password"  onChange={handleFormValue}      value={credentials.password || ''}/>
+          <Form.Label>password</Form.Label>
+          <Form.Control
+            type="password"
+            placeholder="password"
+            name="password"
+            onChange={handleFormValue}
+            value={credentials.password || ""}
+          />
         </Form.Group>
-      
-        <Button variant="primary" type="submit" onClick={(event) => submitForm(event)}>
-        Login
+
+        <Button
+          variant="primary"
+          type="submit"
+          onClick={(event) => submitForm(event)}
+        >
+          Login
         </Button>
       </Form>
       {/* <div className="form">
@@ -70,7 +83,7 @@ const LoginForm = ({ userLogged }) => {
         <button onClick={() => submitForm()}>Login</button>
       </div> */}
     </>
-  )
-}
+  );
+};
 
-export default LoginForm
+export default LoginForm;
